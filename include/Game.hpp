@@ -9,15 +9,22 @@
 
 class Scene;
 
+// Game class that manage scenes
 class Game
 {
 public:
     Game();
     ~Game();
 
+    // Init the game
     void init();
+
+    // Run the game
     void run();
+
+    // Change scene
     void changeScene(Scene *scene);
+
 private:
     void loop();
 

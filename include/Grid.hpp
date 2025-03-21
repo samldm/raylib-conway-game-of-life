@@ -4,23 +4,39 @@
 #include "raylib.h"
 #include <vector>
 
+// Grid class that contains cells. Contains the logic of the simulation.
 class Grid
 {
 public:
     Grid(int width, int height, float _cellSize = 20.0f);
-
-    void toggleCell(int x, int y);
-    void nextGeneration();
-    int countAliveNeighbors(int x, int y);
-    bool isCellInGrid(int x, int y);
-    void setLinesVisible(bool areVisible = true);
-    Vector2 worldToCellPos(Vector2 worldPos);
     
-    void clearGrid();
-    void generateSoup();
+    // Toggle cell state
+    void toggleCell(int x, int y);
 
+    // Get the next generation
+    void nextGeneration();
+
+    // Returns the number of alive neighbors of a cell
+    int countAliveNeighbors(int x, int y);
+
+    // Returns true if a cell is in the grid
+    bool isCellInGrid(int x, int y);
+
+    // Get a cell position from a world 2D position
+    Vector2 worldToCellPos(Vector2 worldPos);
+
+    // Display of the grid and the cells
     void draw();
     
+    // Change line visibility
+    void setLinesVisible(bool areVisible = true);
+    
+    // Clear the grid
+    void clearGrid();
+
+    // Generate random soup on the grid
+    void generateSoup();
+
     int getWidth() const { return _width; }
     int getHeight() const { return _height; }
 private:

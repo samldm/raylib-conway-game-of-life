@@ -10,6 +10,7 @@ Game::~Game()
     CloseWindow();
 }
 
+// Game init
 void Game::init()
 {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Game of Life");
@@ -18,6 +19,7 @@ void Game::init()
     changeScene(new MenuScene(*this));
 }
 
+// Start the game
 void Game::run()
 {
     while(!WindowShouldClose())
@@ -26,12 +28,14 @@ void Game::run()
     }
 }
 
+// Change scene
 void Game::changeScene(Scene *scene)
 {
     _currentScene.reset(scene);
     _currentScene->init();
 }
 
+// Main loop
 void Game::loop()
 {
     if (_currentScene != nullptr) _currentScene->update();
