@@ -29,12 +29,6 @@ void SimScene::handleInputs()
         _camera.zoom += wheel * 0.1f;
         if (_camera.zoom < 0.1f) _camera.zoom = 0.1f;
         if (_camera.zoom > 3.0f) _camera.zoom = 3.0f;
-        
-        if (_camera.zoom < 0.5f) {
-            _grid.setLinesVisible(false);
-        } else {
-            _grid.setLinesVisible(true);
-        }
     }
 
     // Camera movements
@@ -59,6 +53,9 @@ void SimScene::handleInputs()
         }
     }
 
+    // Toggle grid
+    _grid.setLinesVisible(_panel.isShowGrid());
+
     // Clear the grid
     if (_panel.isClearGridPressed()) {
         _grid.clearGrid();
@@ -75,13 +72,13 @@ void SimScene::update()
 {
     handleInputs();
 
-    // Générer la nouvelle génération
+    // get the next generation if the button is pressed
     if (_panel.isPaused() && _panel.isNextGenerationPressed()) {
         _lastUpdateTime = GetTime();
         _grid.nextGeneration();
     }
 
-    // Défillement auto des générations si pause = false
+    // get the next generation based on time if not paused
     if (!_panel.isPaused() && GetTime() - _lastUpdateTime >= _evolutionSpeed) {
         _grid.nextGeneration();
         _lastUpdateTime = GetTime();

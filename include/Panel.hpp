@@ -16,10 +16,13 @@ public:
     bool isMouseOver();
 
     // Returns true if edit mode is enabled
-    bool isEditMode() const { return _isEditMode; } 
+    bool isEditMode() const { return _editMode; } 
+
+    // Returns true if show grid is enabled
+    bool isShowGrid() const { return _showGrid; }
 
     // Returns true if paused
-    bool isPaused() const { return _isPaused; }
+    bool isPaused() const { return _paused; }
 
     // Returns true if next generation button is pressed
     bool isNextGenerationPressed() const { return _nextGenerationPressed; }
@@ -30,15 +33,16 @@ public:
     // Returns true if generate soup button is pressed
     bool isGenerateSoupPressed() const { return _generateSoup; }
 
-
 private:
     Rectangle _bounds;
-    bool _isEditMode = false;
+    bool _editMode = false;
+    bool _showGrid = true;
     float& _evolutionSpeed;
-    bool _isPaused = true;
+    bool _paused = true;
     bool _nextGenerationPressed = true;
     bool _clearGrid = false;
     bool _generateSoup = false;
+
 };
 
 #endif
