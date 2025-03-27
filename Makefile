@@ -1,15 +1,23 @@
+RAYLIB_DIR = C:/raylib/raylib/src
+
 EXEC = game_of_life.exe
+
 SRC_DIR = src
 INC_DIR = include
 
-RAYLIB_DIR = C:/raylib/raylib/src
+OS_NAME := $(shell echo $(OS))
 
 SRCS := $(wildcard $(SRC_DIR)/*.cpp)
 OBJS := $(SRCS:.cpp=.o)
 
 CXX = g++
 CXXFLAGS = -I$(INC_DIR) -I$(RAYLIB_DIR) -Wall -Wextra -std=c++17
-LDFLAGS = -L$(RAYLIB_DIR) -lraylib -lopengl32 -lgdi32 -lwinmm
+
+ifeq ($(OS_NAME), Linux)
+	LDFLAGS = -L$(RAYLIB_DIR) -lraylib
+else ifeq ($(OS_NAME), Windows_NT)
+	LDFLAGS = -L$(RAYLIB_DIR) -lraylib -lopengl32 -lgdi32 -lwinmm
+endif
 
 LDFLAGS += -static
 
