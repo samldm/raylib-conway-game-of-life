@@ -2,12 +2,14 @@ EXEC = game_of_life.exe
 SRC_DIR = src
 INC_DIR = include
 
+RAYLIB_DIR = C:/raylib/raylib/src
+
 SRCS := $(wildcard $(SRC_DIR)/*.cpp)
 OBJS := $(SRCS:.cpp=.o)
 
 CXX = g++
-CXXFLAGS = -I$(INC_DIR) -IC:/raylib/raylib/src -Wall -Wextra -std=c++17
-LDFLAGS = -LC:/raylib/raylib/src -lraylib -lopengl32 -lgdi32 -lwinmm
+CXXFLAGS = -I$(INC_DIR) -I$(RAYLIB_DIR) -Wall -Wextra -std=c++17
+LDFLAGS = -L$(RAYLIB_DIR) -lraylib -lopengl32 -lgdi32 -lwinmm
 
 LDFLAGS += -static
 
